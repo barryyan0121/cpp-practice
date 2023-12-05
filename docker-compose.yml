@@ -1,0 +1,8 @@
+version: "3"
+services:
+  cpp-dev:
+    image: cpp-dev
+    container_name: cpp-dev
+    volumes:
+      - .:/cpp
+    command: tail -f /dev/null
