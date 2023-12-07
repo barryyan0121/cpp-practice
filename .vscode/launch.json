@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/yanha/Desktop/project/cpp/design_pattern/structural_pattern/facade",
-      "program": "c:/Users/yanha/Desktop/project/cpp/design_pattern/structural_pattern/facade/build/Debug/outDebug",
+      "cwd": "c:/Users/yanha/Desktop/project/cpp/design_pattern/creational_pattern/builder",
+      "program": "c:/Users/yanha/Desktop/project/cpp/design_pattern/creational_pattern/builder/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
