@@ -30,7 +30,7 @@ public:
 class Item {
 public:
 	virtual std::string name() const = 0;
-	virtual Packing* packing() const = 0;
+	virtual std::unique_ptr<Packing> packing() const = 0;
 	virtual float price() const = 0;
 	~Item() = default;
 };
@@ -38,8 +38,8 @@ public:
 //
 class Burger : public Item {
 public:
-	Packing* packing() const override {
-		return new Wrapper();
+	std::unique_ptr<Packing> packing() const override {
+		return std::make_unique<Wrapper>();
 	}
 };
 
@@ -65,8 +65,8 @@ public:
 
 class ColdDrink : public Item {
 public:
-	Packing* packing() const override {
-		return new Bottle();
+	std::unique_ptr<Packing> packing() const override {
+		return std::make_unique<Bottle>();
 	}
 };
 

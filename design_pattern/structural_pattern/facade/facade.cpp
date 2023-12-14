@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 class Shape {
 public:
@@ -29,16 +30,12 @@ public:
 class ShapeMaker {
 public:
 	ShapeMaker() {
-		rectangle = new Rectangle();
-		square = new Square();
-		circle = new Circle();
+		rectangle = std::make_unique<Rectangle>();
+		square = std::make_unique<Square>();
+		circle = std::make_unique<Circle>();
 	}
 
-	~ShapeMaker() {
-		delete rectangle;
-		delete square;
-		delete circle;
-	}
+	~ShapeMaker() {}
 
 	void drawRectangle() {
 		rectangle->draw();
@@ -53,16 +50,15 @@ public:
 	}
 
 private:
-	Shape* rectangle;
-	Shape* square;
-	Shape* circle;
+	std::unique_ptr<Shape> rectangle;
+	std::unique_ptr<Shape> square;
+	std::unique_ptr<Shape> circle;
 };
 
 int main() {
-	ShapeMaker* shapeMaker = new ShapeMaker();
+	auto shapeMaker = std::make_unique<ShapeMaker>();
 	shapeMaker->drawRectangle();
 	shapeMaker->drawSquare();
 	shapeMaker->drawCircle();
-	delete shapeMaker;
 	return 0;
 }
