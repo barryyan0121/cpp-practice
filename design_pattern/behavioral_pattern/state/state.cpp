@@ -1,8 +1,8 @@
 #include <iostream>
-#include <typeinfo>
+#include <memory>
+#include <string>
 
-// Forward declaration of Context to resolve circular dependency
-class Context;
+class Context; // Forward declaration
 
 class State {
 public:
@@ -14,21 +14,21 @@ public:
 class Context {
 public:
 	Context() : state(nullptr) {}
-	void setState(State* state) {
-		this->state = state;
+	void setState(std::unique_ptr<State> newState) {
+		state = std::move(newState);
 	}
 	State* getState() const {
-		return state;
+		return state.get();
 	}
 
 private:
-	State* state;
+	std::unique_ptr<State> state;
 };
 
 class StartState : public State {
 public:
 	void doAction(Context& context) override {
-		context.setState(this);
+		context.setState(std::make_unique<StartState>());
 	}
 	std::string getStateName() const override {
 		return "Start State";
@@ -38,7 +38,7 @@ public:
 class StopState : public State {
 public:
 	void doAction(Context& context) override {
-		context.setState(this);
+		context.setState(std::make_unique<StopState>());
 	}
 	std::string getStateName() const override {
 		return "Stop State";
@@ -47,13 +47,13 @@ public:
 
 int main() {
 	Context context;
-	StartState startState;
-	StopState stopState;
 
-	startState.doAction(context);
+	std::unique_ptr<State> startState = std::make_unique<StartState>();
+	startState->doAction(context);
 	std::cout << "Current state: " << context.getState()->getStateName() << std::endl;
 
-	stopState.doAction(context);
+	std::unique_ptr<State> stopState = std::make_unique<StopState>();
+	stopState->doAction(context);
 	std::cout << "Current state: " << context.getState()->getStateName() << std::endl;
 
 	return 0;
