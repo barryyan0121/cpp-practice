@@ -1,14 +1,14 @@
 {
   "configurations": [
     {
-      "name": "macos-gcc-arm64",
+      "name": "macos-clang-arm64",
       "includePath": [
         "${workspaceFolder}/**"
       ],
-      "compilerPath": "/usr/bin/gcc",
+      "compilerPath": "/usr/bin/clang",
       "cStandard": "${default}",
-      "cppStandard": "c++17",
-      "intelliSenseMode": "macos-gcc-arm64",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "macos-clang-arm64",
       "compilerArgs": [
         ""
       ]
