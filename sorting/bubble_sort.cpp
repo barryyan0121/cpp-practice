@@ -13,7 +13,7 @@ void bubble_sort(std::vector<int>& v) {
 
 int main() {
 	std::cout << "Bubble sort" << std::endl;
-	std::vector<int> v = {5, 4, 3, 2, 1};
+	std::vector<int> v = {6, 5, 4, 3, 2, 1};
 	std::cout << "Before sorting: ";
 	for (int i = 0; i < v.size(); ++i) {
 		std::cout << v[i] << " ";

@@ -1,8 +1,11 @@
 version: "3"
 services:
   cpp-dev:
+    build: .
     image: cpp-dev
     container_name: cpp-dev
-    volumes:
-      - .:/cpp
-    command: tail -f /dev/null
+    tty: true  # This enables the service to accept input
+    stdin_open: true  # Keeps stdin open
+    # volumes:
+    #   - .:/app
+    entrypoint: /app/entrypoint.sh
